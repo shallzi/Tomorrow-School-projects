@@ -1,4 +1,4 @@
-eecho "Annabel Church"
+echo "Annabel Church"
 echo "699607"
 echo "Blue Honda"
 echo "Jeremy Bowers"
