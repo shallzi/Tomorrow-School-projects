@@ -1,0 +1,1 @@
+curl https://01.tomorrow-school.ai/assets/superhero/all.json | jq ' .[] | (select HERO_ID = 1) | .relatives'
