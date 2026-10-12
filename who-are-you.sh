@@ -1,10 +1,2 @@
-"id": 70,
-  "name": "Batman",
-  "slug": "70-batman",
-  "powerstats": {
-    "intelligence": 100,
-    "strength": 26,
-    "speed": 27,
-    "durability": 50,
-    "power": 47,
-    "combat": 100
+curl https://01.tomorrow-school.ai/assets/superhero/all.json | jq ' .[] | select( .id ==  70)'
+
