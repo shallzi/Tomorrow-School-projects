@@ -1,0 +1,20 @@
+package piscine
+
+import "github.com/01-edu/z01"
+
+func PrintComb2() {
+	for i := 0; i <= 99; i++ {
+		for j := a + 1; j <= 99; j++ {
+			if i > 0 || j > 1 {
+				z01.PrintRune(',')
+				z01.PrintRune(' ')
+			}
+			z01.PrintRune(rune(i/10 + '0'))
+			z01.PrintRune(rune(i%10 + '0'))
+			z01.PrintRune(' ')
+			z01.PrintRune(rune(j/10 + '0'))
+			z01.PrintRune(rune(j%10 + '0'))
+		}
+	}
+	z01.PrintRune('\n')
+}
