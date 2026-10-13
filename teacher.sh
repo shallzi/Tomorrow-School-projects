@@ -1,5 +1,5 @@
 #!/bin/bash
-export INTERVIEW_NUM=$(grep -l "Annabel Church" interviews/* | sed 's/[^0-9]*//g')
+export INTERVIEW_NUM=$(grep -l "Annabel Church" interviews/* | grep -oE '[0-9]+$')
 
 echo "$INTERVIEW_NUM"
 
