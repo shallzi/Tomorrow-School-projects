@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import "github.com/01-edu/z01"
 
 func main() {
-	fmt.Println("0123456789")
+	for r := '0'; r <= '9'; r++ {
+		z01.PrintRune(r)
+	}
+	z01.PrintRune('\n')
 }
