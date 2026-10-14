@@ -1,6 +1,9 @@
 package piscine
 
-func DivMod(a int, b int, div *int, mod *int) {
-	*div = a / b
-	*mod = a % b
+func UltimateDivMod(a *int, b *int) {
+	temp := *a
+
+	*a = temp / *b
+
+	*b = temp % *b
 }
