@@ -7,7 +7,7 @@ func PrintCombN(n int) {
 		return
 	}
 
-	var digits = make([]rune, n)
+	digits := make([]rune, n)
 	for i := 0; i < n; i++ {
 		digits[i] = rune('0' + i)
 	}
