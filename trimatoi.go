@@ -10,8 +10,8 @@ func TrimAtoi(s string) int {
 	hasDigits := false
 	isSignFound := false
 
-	for _, i := range s {
-		if i >= '0' && i <= '9' {
+	for _, r := range s {
+		if r >= '0' && r <= '9' {
 			hasDigits = true
 			result = result*10 + int(r-'0')
 		} else if !hasDigits && !isSignFound {
