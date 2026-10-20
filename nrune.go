@@ -2,8 +2,9 @@ package piscine
 
 func NRune(s string, n int) rune {
 	srez := []rune(s)
+	letter := n - 1
 	if len(srez) == 0 || n < 0 {
 		return 0
 	}
-	return srez[n]
+	return srez[letter]
 }
