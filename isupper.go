@@ -5,7 +5,7 @@ func IsUpper(s string) bool {
 		return false
 	}
 	for _, i := range s {
-		if i < 'A' && i > 'Z' {
+		if i < 'A' || i > 'Z' {
 			return false
 		}
 	}
