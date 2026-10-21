@@ -14,11 +14,11 @@ func main() {
 			if s[i] == '/' {
 				lastSlash = i
 			}
-			filename := s[lastSlash+1:]
-			for _, r := range filename {
-				z01.PrintRune(r)
-			}
-			z01.PrintRune('\n')
 		}
+		filename := s[lastSlash+1:]
+		for _, r := range filename {
+			z01.PrintRune(r)
+		}
+		z01.PrintRune('\n')
 	}
 }
