@@ -1,12 +1,24 @@
 package main
 
 import (
-	"fmt"
 	"os"
-	"path/filepath"
+
+	"github.com/01-edu/z01"
 )
 
 func main() {
-	name := filepath.Base(os.Args[0])
-	fmt.Println(name)
+	if len(os.Args) > 0 {
+		s := os.Args[0]
+		lastSlash := -1
+		for i := 0; i < len(s); i++ {
+			if s[i] == '/' {
+				lastSlash = i
+			}
+			filename := s[lastSlash+1:]
+			for _, r := range filename {
+				z01.PrintRune(r)
+			}
+			z01.PrintRune('\n')
+		}
+	}
 }
