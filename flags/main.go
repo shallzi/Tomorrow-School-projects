@@ -41,17 +41,14 @@ func main() {
 		} else if arg == "--order" || arg == "-o" || hasPrefix(arg, "--order=") || hasPrefix(arg, "-o=") {
 			hasOrder = true
 		} else {
-			
 			targetStr = arg
 		}
 	}
-
 
 	result := targetStr
 	if hasInsert {
 		result = result + insertStr
 	}
-
 
 	if hasOrder {
 		runes := []rune(result)
@@ -65,13 +62,11 @@ func main() {
 		result = string(runes)
 	}
 
-	
 	for _, ch := range result {
 		z01.PrintRune(ch)
 	}
 	z01.PrintRune('\n')
 }
-
 
 func hasPrefix(s, prefix string) bool {
 	if len(s) < len(prefix) {
@@ -85,7 +80,6 @@ func hasPrefix(s, prefix string) bool {
 	return true
 }
 
-/
 func trimPrefix(s, prefix string) string {
 	if hasPrefix(s, prefix) {
 		return s[len(prefix):]
