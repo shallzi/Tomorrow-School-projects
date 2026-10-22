@@ -6,7 +6,11 @@ func AppendRange(min, max int) []int {
 
 	var slice []int
 
-	if min < 0 || min > max || max <= 0 {
+	if min > max {
+		return []int(nil)
+	}
+
+	if min < 0 || max <= 0 {
 		return slice
 	}
 
