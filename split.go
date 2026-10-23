@@ -7,10 +7,11 @@ func Split(s, sep string) []string {
 		return result
 	}
 	start := 0
-	for i := 0; i < len(s)-size; {
+	for i := 0; i <= len(s)-size; {
 		if s[i:i+size] == sep {
 			result = append(result, s[start:i])
 			i += size
+			start = i
 		} else {
 			i++
 		}
