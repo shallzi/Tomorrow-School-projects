@@ -1,7 +1,6 @@
 package piscine
 
 func ConcatParams(args []string) string {
-
 	srez := args
 
 	if len(srez) == 0 {
