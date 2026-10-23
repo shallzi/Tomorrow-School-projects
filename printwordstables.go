@@ -7,6 +7,6 @@ func PrintWordsTables(a []string) {
 		for _, char := range i {
 			z01.PrintRune(char)
 		}
+		z01.PrintRune('\n')
 	}
-	z01.PrintRune('\n')
 }
