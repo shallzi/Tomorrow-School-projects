@@ -18,16 +18,18 @@ func main() {
 		}
 		return
 	}
-
-	fileName := arg[0]
-	content, error := os.ReadFile(fileName)
-	if error == nil {
-		for _, i := range content {
-			z01.PrintRune(rune(i))
-		}
-	} else if error != nil {
-		for _, char := range error.Error() {
-			z01.PrintRune(char)
+	for _, fileName := range arg {
+		content, error := os.ReadFile(fileName)
+		if error == nil {
+			for _, i := range content {
+				z01.PrintRune(rune(i))
+			}
+			z01.PrintRune('\n')
+		} else if error != nil {
+			for _, char := range error.Error() {
+				z01.PrintRune(char)
+			}
+			z01.PrintRune('\n')
 		}
 	}
 }
