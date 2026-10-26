@@ -20,8 +20,6 @@ func main() {
 		return
 	}
 
-	hasError := false
-
 	for _, fileName := range arg {
 		content, error := os.ReadFile(fileName)
 		if error == nil {
@@ -41,11 +39,9 @@ func main() {
 			for _, char := range error.Error() {
 				z01.PrintRune(char)
 			}
-			hasError = true
 			z01.PrintRune('\n')
+			os.Exit(1)
+
 		}
-	}
-	if hasError {
-		os.Exit(1)
 	}
 }
