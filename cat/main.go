@@ -15,6 +15,7 @@ func main() {
 			for _, char := range err.Error() {
 				z01.PrintRune(char)
 			}
+			z01.PrintRune('\n')
 		}
 		return
 	}
@@ -24,7 +25,6 @@ func main() {
 			for _, i := range content {
 				z01.PrintRune(rune(i))
 			}
-			z01.PrintRune('\n')
 		} else if error != nil {
 			for _, char := range error.Error() {
 				z01.PrintRune(char)
