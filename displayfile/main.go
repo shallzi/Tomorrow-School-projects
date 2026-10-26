@@ -21,6 +21,6 @@ func main() {
 		if error != nil {
 			fmt.Println("Error:", error)
 		}
-		fmt.Println(string(content))
+		fmt.Print(string(content))
 	}
 }
