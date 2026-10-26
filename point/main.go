@@ -32,7 +32,7 @@ func main() {
 				output[i]++
 			}
 		case 5:
-			for n := 0; n < points.x/10; n++ {
+			for n := 0; n < points.x%10; n++ {
 				output[i]++
 			}
 		case 12:
@@ -40,7 +40,7 @@ func main() {
 				output[i]++
 			}
 		case 13:
-			for n := 0; n < points.y/10; n++ {
+			for n := 0; n < points.y%10; n++ {
 				output[i]++
 			}
 		}
