@@ -39,7 +39,7 @@ func main() {
 	for _, filename := range files {
 		content, err := os.ReadFile(filename)
 		if err != nil {
-			fmt.Println(err)
+			fmt.Fprintln(os.Stderr, err)
 			hasError = true
 			continue
 		}
