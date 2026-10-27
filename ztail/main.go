@@ -6,60 +6,45 @@ import (
 )
 
 func main() {
-	args := os.Args[1:]
-	if len(args) == 0 {
-		return
+	if len(os.Args) < 4 || os.Args[1] != "-c" {
+		os.Exit(1)
 	}
 
-	cCount := -1
-	files := []string{}
-
-	if args[0] == "-c" && len(args) >= 2 {
-		val := 0
-		hasValidInt := true
-		for _, r := range args[1] {
-			if r < '0' || r > '9' {
-				hasValidInt = false
-				break
-			}
-			val = val*10 + int(r-'0')
+	count := 0
+	for _, r := range os.Args[2] {
+		if r < '0' || r > '9' {
+			os.Exit(1)
 		}
-		if hasValidInt && val > 0 {
-			cCount = val
-		}
-		files = args[2:]
-	} else {
-		files = args
+		count = count*10 + int(r-'0')
 	}
 
 	hasError := false
-	multipleFiles := len(files) > 1
-	printedFilesCount := 0
+	multipleFiles := len(os.Args) > 4
+	first := true
 
-	for _, filename := range files {
+	for _, filename := range os.Args[3:] {
 		content, err := os.ReadFile(filename)
 		if err != nil {
-			fmt.Fprintln(os.Stderr, err)
+			fmt.Printf("%s\n", err)
 			hasError = true
+			first = false
 			continue
 		}
 
-		if multipleFiles && printedFilesCount > 0 {
-			fmt.Println()
-		}
-
 		if multipleFiles {
+			if !first {
+				fmt.Printf("\n")
+			}
 			fmt.Printf("==> %s <==\n", filename)
 		}
 
-		if cCount >= 0 {
-			if len(content) > cCount {
-				content = content[len(content)-cCount:]
-			}
+		start := len(content) - count
+		if start < 0 {
+			start = 0
 		}
 
-		os.Stdout.Write(content)
-		printedFilesCount++
+		fmt.Printf("%s", content[start:])
+		first = false
 	}
 
 	if hasError {
