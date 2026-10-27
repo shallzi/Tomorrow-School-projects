@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"strconv"
 )
 
 func main() {
@@ -16,8 +15,18 @@ func main() {
 	files := []string{}
 
 	if args[0] == "-c" && len(args) >= 2 {
-		val, err := strconv.Atoi(args[1])
-		if err == nil && val > 0 {
+		// Ручной парсинг числа без использования strconv
+		val := 0
+		hasValidInt := true
+		for _, r := range args[1] {
+			if r < '0' || r > '9' {
+				hasValidInt = false
+				break
+			}
+			val = val*10 + int(r-'0')
+		}
+		
+		if hasValidInt && val > 0 {
 			cCount = val
 		}
 		files = args[2:]
