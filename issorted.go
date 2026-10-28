@@ -18,7 +18,7 @@ func IsSorted(f func(a, b int) int, a []int) bool {
 		return true
 	}
 
-	for i := 0; i < len(a); i++ {
+	for i := 0; i < len(a)-1; i++ {
 		res := f(a[i], a[i+1])
 		if direction > 0 && res < 0 {
 			return false
