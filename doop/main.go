@@ -100,12 +100,14 @@ func main() {
 			printInt(result)
 		} else if args[1] == "/" {
 			if secondNum == 0 {
+				os.Stdout.WriteString("No division by 0\n")
 				return
 			}
 			result = firstNum / secondNum
 			printInt(result)
 		} else if args[1] == "%" {
 			if secondNum == 0 {
+				os.Stdout.WriteString("No division by 0\n")
 				return
 			}
 			result = firstNum % secondNum
