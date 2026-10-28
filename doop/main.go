@@ -38,7 +38,7 @@ func main() {
 		return
 	}
 
-	if args[1] == "*" || args[1] == "+" || args[1] == "-" || args[1] == "/" {
+	if args[1] == "*" || args[1] == "+" || args[1] == "-" || args[1] == "/" || args[1] == "%" {
 		firstNum := 0
 		signFirst := 1
 		First := args[0]
@@ -99,10 +99,19 @@ func main() {
 			result = firstNum * secondNum
 			printInt(result)
 		} else if args[1] == "/" {
+			if secondNum == 0 {
+				return
+			}
 			result = firstNum / secondNum
 			printInt(result)
+		} else if args[1] == "%" {
+			if secondNum == 0 {
+				return
+			}
+			result = firstNum % secondNum
+			printInt(result)
+		} else {
+			return
 		}
-	} else {
-		return
 	}
 }
