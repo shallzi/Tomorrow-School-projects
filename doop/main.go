@@ -53,7 +53,6 @@ func main() {
 			if First[i] >= '0' && First[i] <= '9' {
 				digit := int(First[i] - '0')
 
-				// Защита от переполнения int для первого числа
 				if firstNum > (9223372036854775807-digit)/10 {
 					return
 				}
@@ -63,7 +62,6 @@ func main() {
 			}
 		}
 
-		// Проверка на переполнение минимального/максимального значения
 		if signFirst == 1 && firstNum < 0 {
 			return
 		}
@@ -92,7 +90,6 @@ func main() {
 			if Second[j] >= '0' && Second[j] <= '9' {
 				digit := int(Second[j] - '0')
 
-				// Защита от переполнения int для второго числа
 				if secondNum > (9223372036854775807-digit)/10 {
 					return
 				}
@@ -113,7 +110,6 @@ func main() {
 		result := 0
 
 		if args[1] == "+" {
-			// Проверка переполнения при сложении
 			if (secondNum > 0 && firstNum > 9223372036854775807-secondNum) ||
 				(secondNum < 0 && firstNum < -9223372036854775808-secondNum) {
 				return
@@ -121,7 +117,6 @@ func main() {
 			result = firstNum + secondNum
 			printInt(result)
 		} else if args[1] == "-" {
-			// Проверка переполнения при вычитании
 			if (secondNum < 0 && firstNum > 9223372036854775807+secondNum) ||
 				(secondNum > 0 && firstNum < -9223372036854775808+secondNum) {
 				return
@@ -129,7 +124,6 @@ func main() {
 			result = firstNum - secondNum
 			printInt(result)
 		} else if args[1] == "*" {
-			// Проверка переполнения при умножении
 			if firstNum != 0 && secondNum != 0 {
 				result = firstNum * secondNum
 				if result/firstNum != secondNum {
@@ -142,7 +136,6 @@ func main() {
 				os.Stdout.WriteString("No division by 0\n")
 				return
 			}
-			// Защита от переполнения при делении MinInt64 на -1
 			if firstNum == -9223372036854775808 && secondNum == -1 {
 				return
 			}
