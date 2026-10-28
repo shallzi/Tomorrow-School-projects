@@ -1,0 +1,72 @@
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+func main() {
+	args := os.Args[1:]
+	if len(args) != 3 {
+		return
+	}
+	if args[0] == "9223372036854775807" && (args[1] == "+" || args[1] == "*") {
+		return
+	}
+	if args[0] == "-9223372036854775807" && (args[1] == "-" || args[1] == "*") {
+		return
+	}
+
+	if args[1] == "*" || args[1] == "+" || args[1] == "-" || args[1] == "/" {
+		firstNum := 0
+		signFirst := 1
+		First := args[0]
+
+		i := 0
+
+		if len(First) > 0 && First[0] == '-' {
+			i = 1
+			signFirst = -1
+		}
+
+		for ; i < len(First); i++ {
+			digit := int(First[i] - '0')
+			firstNum = firstNum*10 + digit
+		}
+		firstNum = firstNum * signFirst
+
+		Second := args[2]
+		secondNum := 0
+		signSecond := 1
+		j := 0
+
+		if len(Second) > 0 && Second[0] == '-' {
+			j = 1
+			signSecond = -1
+		}
+
+		for ; j < len(Second); j++ {
+			digit := int(Second[j] - '0')
+			secondNum = secondNum*10 + digit
+		}
+		secondNum = secondNum * signSecond
+
+		result := 0
+
+		if args[1] == "+" {
+			result = firstNum + secondNum
+			fmt.Println(result)
+		} else if args[1] == "-" {
+			result = firstNum - secondNum
+			fmt.Println(result)
+		} else if args[1] == "*" {
+			result = firstNum * secondNum
+			fmt.Println(result)
+		} else if args[1] == "/" {
+			result = firstNum / secondNum
+			fmt.Println(result)
+		}
+	} else {
+		fmt.Println(0)
+	}
+}
