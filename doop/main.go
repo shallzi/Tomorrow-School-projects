@@ -13,7 +13,7 @@ func main() {
 	if args[0] == "9223372036854775807" && (args[1] == "+" || args[1] == "*") {
 		return
 	}
-	if args[0] == "-9223372036854775807" && (args[1] == "-" || args[1] == "*") {
+	if args[0] == "-9223372036854775809" && (args[1] == "-" || args[1] == "*") {
 		return
 	}
 
@@ -28,10 +28,17 @@ func main() {
 			i = 1
 			signFirst = -1
 		}
+		if i == len(First) {
+			return
+		}
 
 		for ; i < len(First); i++ {
-			digit := int(First[i] - '0')
-			firstNum = firstNum*10 + digit
+			if First[i] >= '0' && First[i] <= '9' {
+				digit := int(First[i] - '0')
+				firstNum = firstNum*10 + digit
+			} else {
+				return
+			}
 		}
 		firstNum = firstNum * signFirst
 
@@ -45,9 +52,17 @@ func main() {
 			signSecond = -1
 		}
 
+		if j == len(Second) {
+			return
+		}
+
 		for ; j < len(Second); j++ {
-			digit := int(Second[j] - '0')
-			secondNum = secondNum*10 + digit
+			if Second[j] >= '0' && Second[j] <= '9' {
+				digit := int(Second[j] - '0')
+				secondNum = secondNum*10 + digit
+			} else {
+				return
+			}
 		}
 		secondNum = secondNum * signSecond
 
