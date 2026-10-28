@@ -1,9 +1,30 @@
 package main
 
 import (
-	"fmt"
 	"os"
 )
+
+func printInt(n int) {
+	if n == 0 {
+		os.Stdout.WriteString("0\n")
+		return
+	}
+
+	if n < 0 {
+		os.Stdout.WriteString("-")
+		n = -n
+	}
+
+	var buf [20]byte
+	i := len(buf)
+	for n > 0 {
+		i--
+		buf[i] = byte('0' + n%10)
+		n /= 10
+	}
+	os.Stdout.Write(buf[i:])
+	os.Stdout.WriteString("\n")
+}
 
 func main() {
 	args := os.Args[1:]
@@ -70,18 +91,18 @@ func main() {
 
 		if args[1] == "+" {
 			result = firstNum + secondNum
-			fmt.Println(result)
+			printInt(result)
 		} else if args[1] == "-" {
 			result = firstNum - secondNum
-			fmt.Println(result)
+			printInt(result)
 		} else if args[1] == "*" {
 			result = firstNum * secondNum
-			fmt.Println(result)
+			printInt(result)
 		} else if args[1] == "/" {
 			result = firstNum / secondNum
-			fmt.Println(result)
+			printInt(result)
 		}
 	} else {
-		fmt.Println(0)
+		return
 	}
 }
