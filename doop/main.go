@@ -31,12 +31,6 @@ func main() {
 	if len(args) != 3 {
 		return
 	}
-	if args[0] == "9223372036854775807" && (args[1] == "+" || args[1] == "*") {
-		return
-	}
-	if args[0] == "-9223372036854775809" && (args[1] == "-" || args[1] == "*") {
-		return
-	}
 
 	if args[1] == "*" || args[1] == "+" || args[1] == "-" || args[1] == "/" || args[1] == "%" {
 		firstNum := 0
@@ -48,6 +42,8 @@ func main() {
 		if len(First) > 0 && First[0] == '-' {
 			i = 1
 			signFirst = -1
+		} else if len(First) > 0 && First[0] == '+' {
+			i = 1
 		}
 		if i == len(First) {
 			return
@@ -56,10 +52,23 @@ func main() {
 		for ; i < len(First); i++ {
 			if First[i] >= '0' && First[i] <= '9' {
 				digit := int(First[i] - '0')
+
+				// Защита от переполнения int для первого числа
+				if firstNum > (9223372036854775807-digit)/10 {
+					return
+				}
 				firstNum = firstNum*10 + digit
 			} else {
 				return
 			}
+		}
+
+		// Проверка на переполнение минимального/максимального значения
+		if signFirst == 1 && firstNum < 0 {
+			return
+		}
+		if signFirst == -1 && firstNum-1 > 9223372036854775807 {
+			return
 		}
 		firstNum = firstNum * signFirst
 
@@ -71,6 +80,8 @@ func main() {
 		if len(Second) > 0 && Second[0] == '-' {
 			j = 1
 			signSecond = -1
+		} else if len(Second) > 0 && Second[0] == '+' {
+			j = 1
 		}
 
 		if j == len(Second) {
@@ -80,34 +91,69 @@ func main() {
 		for ; j < len(Second); j++ {
 			if Second[j] >= '0' && Second[j] <= '9' {
 				digit := int(Second[j] - '0')
+
+				// Защита от переполнения int для второго числа
+				if secondNum > (9223372036854775807-digit)/10 {
+					return
+				}
 				secondNum = secondNum*10 + digit
 			} else {
 				return
 			}
+		}
+
+		if signSecond == 1 && secondNum < 0 {
+			return
+		}
+		if signSecond == -1 && secondNum-1 > 9223372036854775807 {
+			return
 		}
 		secondNum = secondNum * signSecond
 
 		result := 0
 
 		if args[1] == "+" {
+			// Проверка переполнения при сложении
+			if (secondNum > 0 && firstNum > 9223372036854775807-secondNum) ||
+				(secondNum < 0 && firstNum < -9223372036854775808-secondNum) {
+				return
+			}
 			result = firstNum + secondNum
 			printInt(result)
 		} else if args[1] == "-" {
+			// Проверка переполнения при вычитании
+			if (secondNum < 0 && firstNum > 9223372036854775807+secondNum) ||
+				(secondNum > 0 && firstNum < -9223372036854775808+secondNum) {
+				return
+			}
 			result = firstNum - secondNum
 			printInt(result)
 		} else if args[1] == "*" {
-			result = firstNum * secondNum
+			// Проверка переполнения при умножении
+			if firstNum != 0 && secondNum != 0 {
+				result = firstNum * secondNum
+				if result/firstNum != secondNum {
+					return
+				}
+			}
 			printInt(result)
 		} else if args[1] == "/" {
 			if secondNum == 0 {
 				os.Stdout.WriteString("No division by 0\n")
 				return
 			}
+			// Защита от переполнения при делении MinInt64 на -1
+			if firstNum == -9223372036854775808 && secondNum == -1 {
+				return
+			}
 			result = firstNum / secondNum
 			printInt(result)
 		} else if args[1] == "%" {
 			if secondNum == 0 {
-				os.Stdout.WriteString("No modulo by 0\n")
+				os.Stdout.WriteString("No division by 0\n")
+				return
+			}
+			if firstNum == -9223372036854775808 && secondNum == -1 {
 				return
 			}
 			result = firstNum % secondNum
