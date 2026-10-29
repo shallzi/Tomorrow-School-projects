@@ -1,7 +1,11 @@
 package piscine
 
-import "sort"
-
 func SortWordArr(a []string) {
-	sort.Strings(a)
+	for i := 0; i < len(a)-1; i++ {
+		for j := i + 1; j < len(a); j++ {
+			if a[i] > a[j] {
+				a[i], a[j] = a[j], a[i]
+			}
+		}
+	}
 }
