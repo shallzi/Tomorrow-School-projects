@@ -7,9 +7,6 @@ import (
 )
 
 func DealAPackOfCards(deck []int) {
-	if len(deck) != 12 {
-		return
-	}
 	fmt.Printf("Player 1: %v, %v, %v", deck[0], deck[1], deck[2])
 	z01.PrintRune('\n')
 	fmt.Printf("Player 2: %v, %v, %v", deck[3], deck[4], deck[5])
