@@ -13,8 +13,6 @@ func FoodDeliveryTime(order string) int {
 	}
 	if order == "nuggets" {
 		return 12
-	} else {
-		return 404
 	}
-
+	return 404
 }
