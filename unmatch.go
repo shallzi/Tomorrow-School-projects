@@ -6,9 +6,9 @@ func Unmatch(a []int) int {
 		mapp[a[i]]++
 	}
 	for _, val := range a {
-		if mapp[val] == 1 {
+		if mapp[val]%2 != 0 {
 			return val
 		}
 	}
-	return 0
+	return -1
 }
