@@ -3,11 +3,6 @@ package piscine
 func ShoppingSummaryCounter(str string) map[string]int {
 	check := make(map[string]int)
 
-	// Если строка абсолютно пустая, возвращаем пустую мапу
-	if len(str) == 0 {
-		return check
-	}
-
 	word := ""
 
 	for i := 0; i < len(str); i++ {
@@ -20,7 +15,7 @@ func ShoppingSummaryCounter(str string) map[string]int {
 		}
 	}
 
-	// Добавляем последнее оставшееся слово
+	// Добавляем последнее оставшееся слово (или "" для пустой строки)
 	check[word]++
 
 	return check
