@@ -3,11 +3,11 @@ package piscine
 func Unmatch(a []int) int {
 	mapp := make(map[int]int)
 	for i := 0; i < len(a); i++ {
-		mapp[i]++
+		mapp[a[i]]++
 	}
-	for i := 0; i < len(mapp); i++ {
-		if mapp[i] == 1 {
-			return i
+	for _, val := range a {
+		if mapp[val] == 1 {
+			return val
 		}
 	}
 	return 0
