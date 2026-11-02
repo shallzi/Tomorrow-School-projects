@@ -1,11 +1,11 @@
 package piscine
 
-type NodeL struct {
+type Node struct {
 	Data interface{}
 	Next *NodeL
 }
 
-type List struct {
+type Lis struct {
 	Head *NodeL
 	Tail *NodeL
 }
