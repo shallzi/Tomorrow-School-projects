@@ -1,7 +1,7 @@
 package piscine
 
 func ListMerge(l1 *List, l2 *List) {
-	if l1 == nil || l2 == nil || l1.Head == nil || l2.Head == nil {
+	if l2 == nil || l2.Head == nil {
 		return
 	}
 	uzel := l2.Head
