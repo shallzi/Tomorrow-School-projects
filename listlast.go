@@ -1,7 +1,7 @@
 package piscine
 
 func ListLast(l *List) interface{} {
-	if l.Head == nil {
+	if l.Head == nil || l == nil {
 		return nil
 	}
 	current := l.Head
