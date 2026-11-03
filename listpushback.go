@@ -1,15 +1,5 @@
 package piscine
 
-type Node struct {
-	Data interface{}
-	Next *NodeL
-}
-
-type Lis struct {
-	Head *NodeL
-	Tail *NodeL
-}
-
 func ListPushBack(l *List, data interface{}) {
 	uzel := &NodeL{Data: data}
 
